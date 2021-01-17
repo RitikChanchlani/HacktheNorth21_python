@@ -158,7 +158,16 @@ def add_list(id,list):
         else:
             add_letters(id,chr(55+i),array[i])
         i+=1
-
+def get_data(id):
+    dict = {'a': get_letter(id,'a'), 'b': get_letter(id,'b'), 'c': get_letter(id,'c'), 'd': get_letter(id,'d'),
+    'e': get_letter(id,'e'),'f': get_letter(id,'f'),'g': get_letter(id,'g'),'h': get_letter(id,'h'),'i': get_letter(id,'i'),
+    'j': get_letter(id,'j'),'k': get_letter(id,'k'),'l': get_letter(id,'l'),'m': get_letter(id,'m'),'n': get_letter(id,'n'),
+    'o': get_letter(id,'o'),'p': get_letter(id,'p'),'q': get_letter(id,'q'),'r': get_letter(id,'r'),'s': get_letter(id,'s'),
+    't': get_letter(id,'t'),'u': get_letter(id,'u'),'v': get_letter(id,'v'),'w': get_letter(id,'w'),'x': get_letter(id,'x'),
+    'y': get_letter(id,'y'),'z': get_letter(id,'z'),'0': get_letter(id,'0'),'1': get_letter(id,'1'),'2': get_letter(id,'2'),
+    '3': get_letter(id,'3'),'4': get_letter(id,'4'),'5': get_letter(id,'5'),'6': get_letter(id,'6'),'7': get_letter(id,'7'),
+    '8': get_letter(id,'8'),'9': get_letter(id,'9'),'max': get_max(id), 'min':get_min(id), 'total': total_clicks(id)}
+    return dict
 
 # user_id = 1
 # str_text = '01234567891234567890'
