@@ -2,13 +2,23 @@ import mysql.connector
 from mysql.connector import errorcode
 from database import cursor
 
-DB_NAME = 'final'
+DB_NAME = 'trial2'
 
 TABLES = {}
 
 TABLES['logs'] = (
     "CREATE TABLE `logs` ("
     " `id` int(11) NOT NULL AUTO_INCREMENT,"
+    " `0` int(11) NOT NULL,"
+    " `1` int(11) NOT NULL,"
+    " `2` int(11) NOT NULL,"
+    " `3` int(11) NOT NULL,"
+    " `4` int(11) NOT NULL,"
+    " `5` int(11) NOT NULL,"
+    " `6` int(11) NOT NULL,"
+    " `7` int(11) NOT NULL,"
+    " `8` int(11) NOT NULL,"
+    " `9` int(11) NOT NULL,"
     " `a` int(11) NOT NULL,"
     " `b` int(11) NOT NULL,"
     " `c` int(11) NOT NULL,"
