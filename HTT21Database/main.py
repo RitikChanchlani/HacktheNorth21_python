@@ -113,13 +113,3 @@ def total_clicks(id):
 def add_str(id, str):
     for element in str:
         add_letter(id,element)
-
-user_id = 1
-add_user("YANG")
-str_text = '0123456789abcdefghijklmnopqrstuvwxyz'
-for element in str_text:
-    add_letter(user_id,element)
-print(get_max(user_id))
-print(get_min(user_id))
-print(get_letter(user_id,get_min(user_id)))
-print(total_clicks(user_id))
