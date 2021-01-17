@@ -6,9 +6,11 @@ def add_log(aa,bb,cc,dd,ee,ff,gg,hh,ii,jj,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,
     db.commit()
     log_id = cursor.lastrowid
     print("Added log {}".format(log_id))
+    return log_id
 
 def add_user(user):
-    add_log(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,user)
+    id = add_log(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,user)
+    return id
 
 def get_letter(id, letter):
     sql = ("SELECT * FROM logs WHERE id = %s")
