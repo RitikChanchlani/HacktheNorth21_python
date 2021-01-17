@@ -110,6 +110,10 @@ def total_clicks(id):
         t += 1
     return value
 
+def add_str(id, str):
+    for element in str:
+        add_letter(id,element)
+
 user_id = 1
 add_user("YANG")
 str_text = '0123456789abcdefghijklmnopqrstuvwxyz'
