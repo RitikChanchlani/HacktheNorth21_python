@@ -23,14 +23,12 @@ def add_key_amount():
     main.add_list(user_id, key_string)
     return jsonify({"":""})
 
-@app.route('/get/max', methods=['GET'])
-def get_max():
-    user_id = Flask.request.headers['user_id']
-    return jsonify({'max': main.get_max(user_id)})
+@app.route('/get/all', methods=['GET', 'POST'])
+def get_all():
+    data = json.loads(request.data)
+    user_id = data['user_id']
+    return jsonify(main.get_data(user_id))
 
-@app.route('/get/min', methods=['GET'])
-def get_min():
-    user_id = Flask.request.headers['user_id']
-    return jsonify({'min': main.get_min(user_id)})
+
 
 

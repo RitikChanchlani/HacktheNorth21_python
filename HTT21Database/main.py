@@ -1,4 +1,5 @@
 from database import cursor, db
+import threading
 
 def add_log(aa,bb,cc,dd,ee,ff,gg,hh,ii,jj,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,user):
     sql = ("INSERT INTO logs(zero,one,two,three,four,five,six,seven,eight,nine,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,user) VALUES ( %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)")
@@ -7,7 +8,7 @@ def add_log(aa,bb,cc,dd,ee,ff,gg,hh,ii,jj,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,
     log_id = cursor.lastrowid
     return log_id
 
-def add_user(user):
+def add_user(user): 
     id = add_log(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,user)
     return id
 
