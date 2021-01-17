@@ -102,10 +102,8 @@ def total_clicks(id):
     t = 1
     while (i < 26):
         value += get_letter(id,chr(97+i))
-        print(chr(97+i))
         i+=1  
     while (t < 11):
-        print(chr(47+t))
         value += get_letter(id,chr(47+t))
         t += 1
     return value
