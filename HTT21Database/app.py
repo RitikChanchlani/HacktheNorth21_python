@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
 import main
+import json 
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -14,11 +15,13 @@ def generate_user():
     return jsonify({'user_id': main.add_user('u')})
 
 
-@app.route('/add/<key_string>', methods=['GET', 'POST'])
-def add_key_amount(key_string):
-    user_id = Flask.request.headers['user_id']
-    main.add_str(key_string)
-    
+@app.route('/add', methods=['GET', 'POST'])
+def add_key_amount():
+    data = json.loads(request.data)
+    user_id = data['user_id']
+    key_string = data['keystrokes']
+    main.add_list(user_id, key_string)
+    return jsonify({"":""})
 
 @app.route('/get/max', methods=['GET'])
 def get_max():
