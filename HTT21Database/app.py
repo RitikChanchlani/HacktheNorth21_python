@@ -1,33 +1,83 @@
 from flask import Flask, jsonify, request
-import main
 import json 
 from flask_cors import CORS
+from flask_mysqldb import MySQL 
 
 app = Flask(__name__)
+
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'AuAusLL9fgw3Kkkq'
+app.config['MYSQL_HOST'] = '35.202.3.19'
+app.config['MYSQL_DB'] = 'final'
+app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+
 CORS(app)
+mysql = MySQL(app)
+
+digits = ['Zero','one','two','three','four','five','six','seven','eight','nine']
 
 @app.route('/')
 def index():
-    return "<h1>Test</h1>"
+    cur = mysql.connection.cursor()
+    cur.execute('''SELECT * FROM logs''')
+    results = cur.fetchall()
+    return jsonify(results)
 
 @app.route('/createUser', methods=['GET'])
 def generate_user():
-    return jsonify({'user_id': main.add_user('u')})
+    conn = mysql.connection
+    cur = conn.cursor()
+    cur.execute('''INSERT INTO logs VALUES (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)''')
+    conn.commit()
+
+    return jsonify({'user_id': cur.lastrowid})
 
 
 @app.route('/add', methods=['GET', 'POST'])
 def add_key_amount():
+    conn = mysql.connection
+    cur = conn.cursor()
     data = json.loads(request.data)
     user_id = data['user_id']
-    key_string = data['keystrokes']
-    main.add_list(user_id, key_string)
-    return jsonify({"":""})
+    key = data['keystroke']
+    if(key>47 and key<58):
+        key = digits[int(chr(key))]
+    elif(key>64 and key<91):
+        key = chr(key).lower()
+    cur.execute(f'UPDATE logs SET {key}={key}+1 WHERE id={user_id}')
+    conn.commit()
+
+    return ('',204)
 
 @app.route('/get/all', methods=['GET', 'POST'])
 def get_all():
+    conn = mysql.connection
+    cur = conn.cursor()
+
     data = json.loads(request.data)
     user_id = data['user_id']
-    return jsonify(main.get_data(user_id))
+    cur.execute(f'SELECT * FROM logs WHERE id={user_id}')
+    results = cur.fetchone()
+    max=''
+    maxVal=0
+    total=0
+    min = ''
+    minVal= float('inf')
+    for key in results:
+        value = results[key]
+        if key == 'id' or key == 'user':
+            continue
+        if value>maxVal:
+            max = key
+            maxVal = value
+        elif value<minVal:
+            min = key
+            minVal = value
+        total+=value
+    results['min'] = min
+    results['max'] = max
+    results['total']= total
+    return jsonify(results)
 
 
 
