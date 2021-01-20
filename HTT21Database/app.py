@@ -5,10 +5,10 @@ from flask_mysqldb import MySQL
 
 app = Flask(__name__)
 
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'AuAusLL9fgw3Kkkq'
-app.config['MYSQL_HOST'] = '35.202.3.19'
-app.config['MYSQL_DB'] = 'final'
+app.config['MYSQL_USER'] = 'xinyanglu66'
+app.config['MYSQL_PASSWORD'] = 'keybored2021'
+app.config['MYSQL_HOST'] = 'xinyanglu66.mysql.pythonanywhere-services.com'
+app.config['MYSQL_DB'] = 'xinyanglu66$keybored'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
 CORS(app)
@@ -44,6 +44,8 @@ def add_key_amount():
         key = digits[int(chr(key))]
     elif(key>64 and key<91):
         key = chr(key).lower()
+    else:
+        return('',204)
     cur.execute(f'UPDATE logs SET {key}={key}+1 WHERE id={user_id}')
     conn.commit()
 
@@ -78,7 +80,3 @@ def get_all():
     results['max'] = max
     results['total']= total
     return jsonify(results)
-
-
-
-
